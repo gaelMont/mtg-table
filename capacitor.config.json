@@ -3,6 +3,6 @@
   "appName": "MTG Table",
   "webDir": "www",
   "plugins": {
-    "CapacitorHttp": { "enabled": true }
+    "CapacitorHttp": { "enabled": false }
   }
 }
