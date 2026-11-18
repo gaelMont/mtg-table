@@ -91,3 +91,4 @@ body.g-on>header.top,body.g-on>nav.tabs,body.g-on>main,body.g-on>footer{display:
 #g-back{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:80;min-height:48px;padding:10px 16px;border-radius:14px;font-weight:700;background:#f3b23a;color:#1d1406;border:0}
 @media(prefers-reduced-motion:reduce){#g-sheet,.g-p,.g-h{transition:none}}
 #game [data-act=force],#game [data-act=declAf],#game [data-act=declBf]{display:none!important}
+.g-pkw{font-size:10px;color:#9fe0b4}.g-prep{position:absolute;left:0;right:0;bottom:16%;font-size:9px;text-align:center;background:#6b55a0;color:#fff;z-index:3}
