@@ -117,12 +117,12 @@ function allPass(){const b=blocker();if(b){toast=b;render();return;}G.passes=0;
  G.prio=S.active;G.focus=S.active;G.shown=null;render();}
 /* élimination (104.3, 800.4a) */
 function eliminations(){if(!G.on||G.view!=='table')return;for(const p of S.players){if(p.out)continue;const why=[];if((p.life??40)<=0)why.push('0 point de vie ou moins (704.5a)');if((p.poison||0)>=10)why.push('10 marqueurs poison (704.5c)');if(p.drewEmpty)why.push('pioche dans une bibliothèque vide (704.5b)');for(const [k,v] of Object.entries(p.cmdDmg||{}))if(v>=21)why.push(`21 blessures de combat de ${k} (903.10a)`);if(p.conceded)why.push('abandon (104.3a)');
-  if(!why.length)continue;p.out=true;const own=S.perms.filter(x=>x.owner===p.id).map(x=>x.uid);S.perms=S.perms.filter(x=>x.owner!==p.id);S.stack=S.stack.filter(x=>x.controller!==p.id);
+  if(!why.length)continue;if(!p.conceded&&cantLoseP(p.id)){if(p._clNote!==why.join()){p._clNote=why.join();logm(`${p.name} devrait perdre la partie (${why.join(' ; ')}), mais ${cantLoseP(p.id)} l'en empêche (104.3, 614.1).`);}continue;}p.out=true;const own=S.perms.filter(x=>x.owner===p.id).map(x=>x.uid);S.perms=S.perms.filter(x=>x.owner!==p.id);S.stack=S.stack.filter(x=>x.controller!==p.id);
   const ctl=S.perms.filter(x=>R.X.objs[x.uid]?.controller===p.id);for(const x of ctl){S.perms=S.perms.filter(y=>y!==x);Z(x.owner,'exile').push(newCard(x.card));}
   for(const x of S.perms)if(own.includes(x.attachedTo))delete x.attachedTo;
   logm(`${p.name} perd la partie : ${why.join(' ; ')}. Il quitte la partie avec tous les objets qu'il possède ; ce qu'il contrôlait d'autre est exilé (800.4a).`);
   if(G.prio===p.id)G.prio=nextAlive(p.id);if(G.focus===p.id)G.focus=G.prio;}
- if(alive().length===1&&!G.won){G.won=alive()[0].id;logm(`${pname(G.won)} gagne la partie (104.2a).`);}}
+ if(alive().length===1&&!G.won&&!cantWinP(alive()[0].id)){G.won=alive()[0].id;logm(`${pname(G.won)} gagne la partie (104.2a).`);}}
 
 /* ---------- Rendu ---------- */
 function root(){let r=$g('#game');if(r)return r;r=document.createElement('div');r.id='game';r.innerHTML=`<div id="g-view"></div><div id="g-sheet"><div class="gs-head"><button class="gbtn sm" data-g="min">Réduire</button><span id="gs-title"></span><button class="gbtn sm" data-g="close">Fermer</button></div><div id="gs-detail"></div><div id="gs-lab"></div></div><div id="g-toast"></div>`;document.body.appendChild(r);
