@@ -1,0 +1,8 @@
+{
+  "appId": "be.gaelmont.mtgtable",
+  "appName": "MTG Table",
+  "webDir": "www",
+  "plugins": {
+    "CapacitorHttp": { "enabled": true }
+  }
+}
