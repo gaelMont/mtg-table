@@ -151,10 +151,12 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Une entrée par carte imprimée (99 709 au 19/11/2026) : nom, édition et son nom, date de sortie, numéro de collection, rareté, variante (sans bordure, vitrine, promo…), artiste, catégorie (papier, fantaisie, en ligne), coût, types, statut (`automatisee`, `partielle`, `manuelle`, `absente`) et la liste des manques de la carte.
 - Les noms imprimés alternatifs (Universes Within) indiquent le nom de la carte dans le simulateur.
 - Explorateur en ligne (artefact « Suivi des cartes ») : recherche, filtres par édition, statut, rareté et manque, camemberts, export CSV, et chargement d'un nouveau coverage.json.
-- Le périmètre compte maintenant aussi les cartes papier listées seulement dans les sections annexes des éditions de Forge (cartes Jumpstart d'Avatar, decks de planeswalker, etc.) : 32 559 cartes papier jouables au lieu de 32 162.
+- Le périmètre compte maintenant aussi les cartes papier listées seulement dans les sections annexes des éditions de Forge (cartes Jumpstart d'Avatar, decks de planeswalker, etc.).
+- Vérifié contre MTGJSON AllPrintings du 18/11/2026 (`tools/mtgjson_extract.py`, puis 5e argument de `coverage.py`) : chaque impression porte un champ `mtgjson`. MTGJSON compte 32 666 cartes papier légales en tournoi ; il n'en manque aucune chez nous à part Wicker Picker (pas de script Forge), les 7 faces fusionnées des cartes Meld (couvertes par leurs paires) et 2 différences d'orthographe. Corrigé grâce à lui : noms Secret Lair comptés deux fois, cartes Shandalar et Arena classées en papier, cartes de test classées en papier, cartes légales d'Unfinity classées en fantaisie.
+- 11 cartes de Forge introuvables dans MTGJSON : 9 cartes Dune du Secret Lair (n° 2916 et suivants), Borg Queen, One Who Is Many (TRC 131), All Good Things . . . et Ratonhnhaké:ton (orthographe). Leur sortie n'est pas vérifiée.
 
 ### Où on en est (v0.9.0)
-- Papier : 23 987 automatisées sur 32 559 (73,7 %), 3 453 partielles, 5 119 à la main. 16 noms papier sans script Forge.
+- Papier (cartes légales en tournoi selon MTGJSON) : 23 992 automatisées sur 32 667 (73,4 %), 3 506 partielles, 5 169 à la main. 1 carte sans script Forge (Wicker Picker).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.

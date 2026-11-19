@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """Suivi de l'automatisation du simulateur, une entrée par carte imprimée.
-Usage : python3 tools/coverage.py <forge/res> <sim/db> <date limite AAAA-MM-JJ> <sortie.json>
+Usage : python3 tools/coverage.py <forge/res> <sim/db> <date limite AAAA-MM-JJ> <sortie.json> [extrait MTGJSON]
+(extrait MTGJSON : python3 tools/mtgjson_extract.py AllPrintings.json mj.json)
 Chaque entrée = une impression (édition + numéro de collection), avec le statut de la carte
 dans le moteur et ce qui manque encore pour l'automatiser."""
 import glob,re,json,sys,collections
 RES,DB,CUT,OUT=sys.argv[1:5]
+MJ=sys.argv[5] if len(sys.argv)>5 else None
 STAT={'full':'automatisee','partial':'partielle','manual':'manuelle'}
 RAR={'C':'commune','U':'peu commune','R':'rare','M':'mythique','S':'spéciale','L':'terrain de base','T':'jeton'}
 CAT={'Online':'en ligne','Funny':'fantaisie'}
@@ -23,6 +25,21 @@ try:
 except Exception: pass
 def num_key(n):
   m=re.match(r'^([A-Za-z]*)(\d*)(.*)$',n); return (m.group(1),int(m.group(2)) if m.group(2) else 0,m.group(3))
+# MTGJSON : référence pour savoir si une carte existe en papier et sous quel nom
+MJP=None;MJFL={};MJAV={};MJSERIOUS=set()
+if MJ:
+  mj=json.load(open(MJ,encoding='utf-8'));MJP=set()
+  for s_ in mj['sets']:
+    if not s_['releaseDate'] or s_['releaseDate']>CUT: continue
+    for c in s_['cards']:
+      nm=c['name'];b=nm.split(' // ')[0]
+      av=set(c['availability'] or [])
+      MJAV.setdefault(b,set()).update(av)
+      if c.get('faceName'): MJAV.setdefault(c['faceName'],set()).update(av)
+      if 'paper' in av and s_['type'] not in ('memorabilia','token','minigame'): MJP.add(b)
+      if 'paper' in av and not c.get('isFunny') and c.get('legal') and s_['type'] not in ('memorabilia','token','minigame'): MJSERIOUS.add(b)
+      for k in ('flavorName','printedName'):
+        if c.get(k) and c[k]!=nm: MJFL[c[k]]=b
 rows=[]
 for f in glob.glob(RES+'/editions/*.txt'):
   t=open(f,encoding='utf-8',errors='replace').read()
@@ -43,10 +60,24 @@ for f in glob.glob(RES+'/editions/*.txt'):
     r=st.get(nm) or st.get(base); alt=None
     if not r and AL.get(base) in st: alt=AL[base]; r=st[alt]
     if r and r['_bad']: continue
+    mjnote=None;rcat=cat;oracle=None
+    if MJP is not None:
+      if base in MJFL:
+        oracle=MJFL[base]; mjnote='nom alternatif (Secret Lair ou Universes Within) de '+oracle
+      elif base in MJP:
+        mjnote='ok'
+        if rcat=='papier' and base not in MJSERIOUS and MJSERIOUS: rcat='fantaisie'; mjnote='ok (carte papier non légale en tournoi selon MTGJSON : test, fantaisie ou objet de collection)'
+        if rcat=='fantaisie' and base in MJSERIOUS: rcat='papier'; mjnote='ok (carte légale en tournoi selon MTGJSON, malgré son édition fantaisie)'
+      elif base in MJAV:
+        mjnote='pas en papier selon MTGJSON ('+', '.join(sorted(MJAV[base]))+')'
+        if rcat=='papier': rcat='en ligne'
+      else: mjnote='introuvable dans MTGJSON au '+CUT+' (carte annoncée, nom différent ou oubli de MTGJSON)'
     e={'nom':nm,'edition':code,'nom_edition':en,'sortie':d.group(1),'numero':m.group(1),'rarete':RAR.get(m.group(2),m.group(2))}
     if sec!='[cards]': e['variante']=sec.strip('[]')
     if m.group(4): e['artiste']=m.group(4).strip()
-    e['categorie']=cat
+    e['categorie']=rcat
+    if oracle: e['nom_oracle']=oracle
+    if mjnote: e['mtgjson']=mjnote
     if r:
       if alt: e['nom_dans_le_simulateur']=alt
       e.update(cout=r['cout'],types=r['types'],statut=r['statut'],manques=r['manques'])
@@ -55,9 +86,18 @@ for f in glob.glob(RES+'/editions/*.txt'):
     rows.append(e)
 rows.sort(key=lambda e:(e['sortie'],e['edition'],num_key(e['numero']),e['nom']),reverse=False)
 # résumé : chaque carte compte une fois, dans sa catégorie la plus « jouable » (papier > fantaisie > en ligne)
+def okey(e):
+  ns=[x.split(' // ')[0] for x in (e['nom'],e.get('nom_dans_le_simulateur')) if x]
+  for b in ns:
+    if b in MJFL: return MJFL[b]
+  if MJP is not None:
+    for b in ns:
+      if b in MJP or b in MJAV: return b
+  return ns[-1]
 rank={'papier':0,'fantaisie':1,'en ligne':2}; best={}
 for e in rows:
-  k=e.get('nom_dans_le_simulateur') or e['nom'].split(' // ')[0]
+  k=okey(e)
+  if k!=e['nom']: e['carte']=k
   if k not in best or rank[e['categorie']]<rank[best[k][0]]: best[k]=(e['categorie'],e['statut'])
 res={}
 for cat in rank:
