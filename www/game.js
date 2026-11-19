@@ -45,7 +45,7 @@ function parseList(txt){
 }
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[’‘`]/g,"'").replace(/\s+/g,' ').trim().toLowerCase();
 let NAMEMAP=null;
-async function nameMap(){if(NAMEMAP)return NAMEMAP;const ix=await dbIndex();NAMEMAP=new Map();for(const r of ix){NAMEMAP.set(norm(r[0]),r);}return NAMEMAP;}
+async function nameMap(){if(NAMEMAP)return NAMEMAP;const ix=await dbIndex();NAMEMAP=new Map();for(const r of ix){NAMEMAP.set(norm(r[0]),r);}try{for(const [a,real] of Object.entries(DBALIAS||{})){const r=NAMEMAP.get(norm(real));if(r&&!NAMEMAP.has(norm(a)))NAMEMAP.set(norm(a),r);}}catch(e){}return NAMEMAP;}
 async function resolveName(n){const M=await nameMap();const tries=[n,n.split(/\s*\/\/\s*/)[0],n.split(/\s*\/\s*/)[0],n.replace(/^A-/,'')];for(const t of tries){const r=M.get(norm(t));if(r)return r;}return null;}
 async function checkList(p){const bad=[],ok=[];for(const sec of ['cmd','main']){for(const row of p[sec]){const r=await resolveName(row.n);if(r)ok.push({...row,name:r[0],type:r[2],cov:r[3],sec});else bad.push(row.n);}}return{ok,bad};}
 
@@ -207,7 +207,7 @@ function tableHTML(){const F=G.focus||S.active;const pl=P_(F)||S.players[0];cons
 function detailHTML(){const d=G.detail;
  if(d.t==='perm'){const p=S.perms.find(x=>x.uid===d.u);if(!p)return'';const o=R.X.objs[p.uid];const ctl=o.controller;const MA=manaAbs(o);const pr=G.prio===ctl;
   return`<div class="g-det">${cardFace(p.card,o,'zoom','normal')}<div class="g-dinfo"><h3>${esc(o.name)}</h3><p>${esc([(o.super||[]).join(' '),(o.types||[]).join(' ')].join(' ').trim())}${(o.sub||[]).length?' - '+esc(o.sub.join(' ')):''}${(o.types||[]).includes('Creature')?` · <b>${o.p??0}/${o.t??0}</b>`:''}</p>
-  ${p.prepared?`<p class="g-small"><b>Préparé</b> : la copie de ${esc(p.card.prepare?.name||'son sort')} attend en exil, lançable par son contrôleur (722.3c).</p>`:''}${p.card.prepare&&!p.prepared?`<p class="g-small">Sort préparé : ${esc(p.card.prepare.name)} (pas encore préparé).</p>`:''}
+  ${p.prepared?`<p class="g-small"><b>Préparé</b> : la copie de ${esc(p.card.prepare?.name||'son sort')} attend en exil, lançable par son contrôleur (723.3c).</p>`:''}${p.card.prepare&&!p.prepared?`<p class="g-small">Sort préparé : ${esc(p.card.prepare.name)} (pas encore préparé).</p>`:''}
   <p class="g-small">Contrôleur : ${esc(pname(ctl))}${p.owner!==ctl?' · propriétaire : '+esc(pname(p.owner)):''}${p.tapped?' · engagé':''}${p.damage?` · ${p.damage} blessure(s)`:''}</p>
   <p class="g-oracle">${esc(p.card.oracle||'').replace(/\n/g,'<br>')}</p>
   ${MA.length?`<div class="g-acts">${MA.map(({a,i})=>`<button class="gbtn sm" data-act="manaab" data-u="${p.uid}" data-i="${i}" ${p.tapped&&/\{T\}/.test(a.text)?'disabled':''}>Mana : ${esc((a.text||'').split('.')[0].slice(0,50))}</button>`).join('')}</div>`:''}
