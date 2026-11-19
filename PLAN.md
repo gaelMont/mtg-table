@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 24 768 automatisées sur 32 658 (75,8 %), 3 341 partielles, 4 549 à la main (v0.10.0). 1 carte sans script Forge (Wicker Picker).
+- Papier (cartes légales en tournoi selon MTGJSON) : 25 081 automatisées sur 32 658 (76,8 %), 3 190 partielles, 4 387 à la main (v0.11.0). 1 carte sans script Forge (Wicker Picker).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -182,6 +182,13 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - « Ne peut pas bloquer » accordé par un effet, terrains supplémentaires et taille de main dans les effets, mana pour un autre joueur et mana qui reste jusqu'à la fin du tour.
 - Affrontement (701.30), déplacer des marqueurs, déclencheurs « se transforme » et « attaque un seul joueur », relancer une carte retenue en payant, sorts qui se mélangent dans la bibliothèque, éclipses (exiler puis renvoyer).
 - Corrigé : 86 cartes perdaient la fin de leur effet quand Forge plaçait un « nettoyage » au milieu de la chaîne (par exemple, Blur ne faisait pas piocher).
+
+### Fait en v0.11.0
+- Statiques qui touchent l'objet auquel la source est attachée (Animate Artifact), filtre « contrôlé par le joueur en cours » (Typhoon), nombre de permanents entrés ce tour-ci.
+- Défausse et sacrifice en quantité variable, marqueurs de joueur de tout type, traversée de terrain accordée par un effet.
+- Choix proposés à un autre joueur (cycle des Torment), regarder le dessus : « autant que tu veux », reste sur le dessus, ordre aléatoire, carte mise engagée ou en bibliothèque.
+- Corrigé : regarder le dessus avec « toutes les cartes X » prenait aussi les cartes qui ne correspondaient pas.
+- Ignoré à raison : les indications pour l'IA de Forge, qui n'ont pas d'effet de jeu.
 
 ### Prochaines étapes, par nombre de cartes débloquées
 1. Choisir une source (64 cartes), choix d'une carte hors du champ de bataille (54), choix parmi des options (49), branches conditionnelles (45).
