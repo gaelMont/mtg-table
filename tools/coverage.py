@@ -27,12 +27,13 @@ def num_key(n):
   m=re.match(r'^([A-Za-z]*)(\d*)(.*)$',n); return (m.group(1),int(m.group(2)) if m.group(2) else 0,m.group(3))
 # MTGJSON : référence pour savoir si une carte existe en papier et sous quel nom
 MJP=None;MJFL={};MJAV={};MJSERIOUS=set()
+def nrm(n): return n.replace('\ua789',':').replace('. . .','...').replace(' ...','...')
 if MJ:
   mj=json.load(open(MJ,encoding='utf-8'));MJP=set()
   for s_ in mj['sets']:
     if not s_['releaseDate'] or s_['releaseDate']>CUT: continue
     for c in s_['cards']:
-      nm=c['name'];b=nm.split(' // ')[0]
+      nm=c['name'];b=nrm(nm.split(' // ')[0])
       av=set(c['availability'] or [])
       MJAV.setdefault(b,set()).update(av)
       if c.get('faceName'): MJAV.setdefault(c['faceName'],set()).update(av)
@@ -40,6 +41,10 @@ if MJ:
       if 'paper' in av and not c.get('isFunny') and c.get('legal') and s_['type'] not in ('memorabilia','token','minigame'): MJSERIOUS.add(b)
       for k in ('flavorName','printedName'):
         if c.get(k) and c[k]!=nm: MJFL[c[k]]=b
+# Cartes présentes dans Forge mais pas encore sorties (vérifiées à la main le 19/11/2026)
+DUNE='Secret Lair « My Arrakis, My Superdrop » (Dune), sortie annoncée le 30/11/2026 (mtgrocks.com, 17/11/2026)'
+NONSORTIES={n:DUNE for n in ['Baron Vladimir Harkonnen','Chani, Blade of Sietch Tabr','Mohiam, Imperial Truthsayer',"Muad'Dib, Prophet Foretold",'Padishah Emperor Shaddam IV','Paul Atreides, Ducal Heir','Princess Irulan Corrino','Reverend Mother Jessica']}
+NONSORTIES['Borg Queen, One Who Is Many']='montrée à la New York Comic Con pour la Beginner Box Star Trek, produit annulé (magic.wizards.com) ; absente de la liste Star Trek Commander de MTGJSON (pas de n° 131)'
 rows=[]
 for f in glob.glob(RES+'/editions/*.txt'):
   t=open(f,encoding='utf-8',errors='replace').read()
@@ -60,7 +65,7 @@ for f in glob.glob(RES+'/editions/*.txt'):
     r=st.get(nm) or st.get(base); alt=None
     if not r and AL.get(base) in st: alt=AL[base]; r=st[alt]
     if r and r['_bad']: continue
-    mjnote=None;rcat=cat;oracle=None
+    mjnote=None;rcat=cat;oracle=None;base0=base;base=nrm(base)
     if MJP is not None:
       if base in MJFL:
         oracle=MJFL[base]; mjnote='nom alternatif (Secret Lair ou Universes Within) de '+oracle
@@ -78,6 +83,7 @@ for f in glob.glob(RES+'/editions/*.txt'):
     e['categorie']=rcat
     if oracle: e['nom_oracle']=oracle
     if mjnote: e['mtgjson']=mjnote
+    if base0 in NONSORTIES: e['categorie']='non sortie'; e['mtgjson']=NONSORTIES[base0]
     if r:
       if alt: e['nom_dans_le_simulateur']=alt
       e.update(cout=r['cout'],types=r['types'],statut=r['statut'],manques=r['manques'])
@@ -94,7 +100,7 @@ def okey(e):
     for b in ns:
       if b in MJP or b in MJAV: return b
   return ns[-1]
-rank={'papier':0,'fantaisie':1,'en ligne':2}; best={}
+rank={'papier':0,'fantaisie':1,'en ligne':2,'non sortie':3}; best={}
 for e in rows:
   k=okey(e)
   if k!=e['nom']: e['carte']=k
