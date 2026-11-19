@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 25 527 automatisées sur 32 659 (78,2 %), 3 075 partielles, 4 056 à la main (v0.16.0). 1 carte sans script Forge (Wicker Picker).
+- Papier (cartes légales en tournoi selon MTGJSON) : 25 968 automatisées sur 32 659 (79,5 %), 2 833 partielles, 3 857 à la main (v0.17.0). 1 carte sans script Forge (Wicker Picker).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,19 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.17.0
+- Épuiser en attaquant (701.43) : case à cocher à la déclaration, pas de dégagement au prochain dégagement, capacité réflexe « quand tu le fais » (avec cible possible).
+- Capacités déclenchées à plusieurs modes (700.2) : cases à cocher, une cible par mode, mode sans cible légale non choisissable.
+- Capacités différées « quand cette créature meurt / quitte le champ de bataille [ce tour-ci] » et « quand tu lanceras ton prochain sort de … ce tour-ci » (603.7c).
+- Exigences de blocage (509.1c) : « doit bloquer cette créature si possible », « bloque à chaque combat si possible ».
+- « Ne peut pas être la cible de » (115.4) ; « ne peut ni attaquer, ni bloquer, ni activer ses capacités » (Arrest et assimilés).
+- Chaque créature inflige des blessures égales à sa force (Band Together…), redirections « les prochaines N blessures / toutes les blessures de combat » sans choix de source (en-Kor, Mirror Strike, Vassal's Duty…).
+- Commettre un crime (700.13) et ses déclencheurs ; manifester l'effroi (701.62) ; déclencheurs « quand une créature est retournée face visible ».
+- Choix entre plusieurs effets fait par l'adversaire ciblé ou pour une cible ; branches sur le coût alternatif payé (Mastery) ou avec effet continu.
+- Force / endurance comparée à X variable dans les filtres ; « créature blessée par cette source ce tour-ci » (Sengir Vampire) ; peut attaquer malgré le défenseur (général).
+- Copies jetons avec célérité et sacrifice / exil à la fin du tour (Kiki-Jiki…), copie avec types de créature imposés ; conditions Délire, Métallurgie, Heure fatidique… sur les capacités statiques ; marqueurs d'arrivée selon évasion, raid, morbidité, révolte ou lancement depuis la main.
+- Honnêteté : une carte contenant encore une action « à la main » n'est plus jamais comptée comme automatisée (11 cartes corrigées) ; corrigé une branche qui ne détruisait rien (Kirtar's Wrath).
 
 ### Fait en v0.16.0
 - Dernières cartes « source de ton choix » : couleur du mana dépensé (Protective Sphere), couleur partagée avec la carte exilée (Mourner's Shield), créature enchantée par l'aura sacrifiée (Kithkin Armor), pile ou face doublant ou prévenant la prochaine blessure (Desperate Gambit). Les couleurs de mana dépensées sont maintenant retenues aussi pour les capacités activées.
