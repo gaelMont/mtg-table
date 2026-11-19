@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 25 414 automatisées sur 32 659 (77,8 %), 3 111 partielles, 4 133 à la main (v0.15.0). 1 carte sans script Forge (Wicker Picker).
+- Papier (cartes légales en tournoi selon MTGJSON) : 25 527 automatisées sur 32 659 (78,2 %), 3 075 partielles, 4 056 à la main (v0.16.0). 1 carte sans script Forge (Wicker Picker).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,14 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.16.0
+- Dernières cartes « source de ton choix » : couleur du mana dépensé (Protective Sphere), couleur partagée avec la carte exilée (Mourner's Shield), créature enchantée par l'aura sacrifiée (Kithkin Armor), pile ou face doublant ou prévenant la prochaine blessure (Desperate Gambit). Les couleurs de mana dépensées sont maintenant retenues aussi pour les capacités activées.
+- Marqueurs étourdissement (122.1d) : ils existaient sur des centaines de cartes sans aucun effet ; un permanent qui devrait se dégager perd un marqueur à la place (étape de dégagement et effets de dégagement).
+- Renforcement (701.39a), plusieurs marqueurs de sortes différentes à la fois, marqueurs de force et d'endurance quelconques (+1/+0, +2/+2, -0/-1…), « retire tous les marqueurs ».
+- Arrivée avec des marqueurs (si kické, ou au choix parmi plusieurs sortes, éventuellement différentes).
+- « Ne peut pas t'attaquer, ni tes planeswalkers » ; taille maximale de main augmentée ou réduite ; interdiction de chercher dans sa bibliothèque.
+- Capacité au choix parmi plusieurs (vigilance, lien de vie ou célérité…) ; oublis internes de Forge sans effet de jeu.
 
 ### Fait en v0.15.0
 - Boucliers « source de ton choix » complétés : les N prochaines blessures (Harm's Way, Shining Shoal avec X, Healing Grace, Refraction Trap), la moitié arrondie à l'inférieur (Dark Sphere), redirection vers le contrôleur de la source (Reflect Damage), suites exil du dessus de la bibliothèque (Bone Mask), pioche (New Way Forward), gain de vie selon la couleur de la source (Samite Ministration, Shadowbane), protection de toi et tes créatures.
