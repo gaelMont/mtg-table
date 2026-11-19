@@ -148,12 +148,13 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 
 ### Suivi carte par carte
 - Fichier `coverage.json` dans le dépôt mtg-table, régénéré par `python3 tools/coverage.py <forge/res> <sim/db> <date> coverage.json`.
-- Pour chaque carte : statut (`automatisee`, `partielle`, `manuelle`, `absente`), catégorie (papier, fantaisie, en ligne), première sortie, éditions, et la liste des manques encore présents. Les noms alternatifs (Universes Within) renvoient à la carte principale.
-- En tête du fichier : un résumé par catégorie, un résumé par édition (de la plus récente à la plus ancienne) et les 100 manques les plus fréquents avec une carte d'exemple.
-- « Jouables » : cartes d'une édition papier sortie au plus tard le 19/11/2026, sans les Un-sets ni les cartes Alchemy « A- ».
+- Une entrée par carte imprimée (99 709 au 19/11/2026) : nom, édition et son nom, date de sortie, numéro de collection, rareté, variante (sans bordure, vitrine, promo…), artiste, catégorie (papier, fantaisie, en ligne), coût, types, statut (`automatisee`, `partielle`, `manuelle`, `absente`) et la liste des manques de la carte.
+- Les noms imprimés alternatifs (Universes Within) indiquent le nom de la carte dans le simulateur.
+- Explorateur en ligne (artefact « Suivi des cartes ») : recherche, filtres par édition, statut, rareté et manque, camemberts, export CSV, et chargement d'un nouveau coverage.json.
+- Le périmètre compte maintenant aussi les cartes papier listées seulement dans les sections annexes des éditions de Forge (cartes Jumpstart d'Avatar, decks de planeswalker, etc.) : 32 559 cartes papier jouables au lieu de 32 162.
 
 ### Où on en est (v0.9.0)
-- Papier : 23 714 automatisées sur 32 162 (73,7 %), 3 422 partielles, 5 026 à la main. 400 noms sans script Forge : ce sont des plans, des machinations, des cartes Vanguard ou des conspirations, hors partie normale.
+- Papier : 23 987 automatisées sur 32 559 (73,7 %), 3 453 partielles, 5 119 à la main. 16 noms papier sans script Forge.
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
