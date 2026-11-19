@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 25 371 automatisées sur 32 659 (77,7 %), 3 112 partielles, 4 175 à la main (v0.14.0). 1 carte sans script Forge (Wicker Picker).
+- Papier (cartes légales en tournoi selon MTGJSON) : 25 414 automatisées sur 32 659 (77,8 %), 3 111 partielles, 4 133 à la main (v0.15.0). 1 carte sans script Forge (Wicker Picker).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,14 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.15.0
+- Boucliers « source de ton choix » complétés : les N prochaines blessures (Harm's Way, Shining Shoal avec X, Healing Grace, Refraction Trap), la moitié arrondie à l'inférieur (Dark Sphere), redirection vers le contrôleur de la source (Reflect Damage), suites exil du dessus de la bibliothèque (Bone Mask), pioche (New Way Forward), gain de vie selon la couleur de la source (Samite Ministration, Shadowbane), protection de toi et tes créatures.
+- Wizard's Spellbook : copie lancée en payant {1} au lieu de son coût (résultat 10 à 19).
+- Liesa : la taxe de commandant se paie en points de vie.
+- Torgaar : sacrifice d'un nombre X de créatures en coût additionnel, réduction de {2} par créature ; sorts de permanent avec coût additionnel en général ; valeur « points de vie de départ ».
+- Break Out : condition sur la carte choisie, « tu peux la mettre sur le champ de bataille », célérité à la carte mise ainsi, le reste au-dessous de la bibliothèque dans un ordre aléatoire (aussi corrigé pour toutes les cartes « le reste au-dessous dans un ordre aléatoire »).
+- Correction : une carte exilée par une capacité depuis la main ou un cimetière n'était pas marquée « exilée avec » sa source (Isochron Scepter ne trouvait pas sa carte).
 
 ### Fait en v0.14.0
 - « Une source de ton choix » (609.7a, 615.7, 614.9) : prévention ou redirection, la prochaine fois ou pour tout le tour, vers toi, ta source ou une cible ; protection de toi, d'une cible, de toi et tes permanents ; suites « tu gagnes autant de PV » et « inflige autant au contrôleur de la source » (Beacon of Destiny, Kor Chant, Eye for an Eye, Honorable Passage, Circle of Protection: Artifacts…). Correction d'un bogue : la prévention « prochaine fois » n'était jamais appliquée aux blessures.
