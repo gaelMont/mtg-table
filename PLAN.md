@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 295 automatisées sur 32 659 (80,5 %), 2 633 partielles, 3 730 à la main (v0.25.0). Les v0.19.0 à v0.25.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 369 automatisées sur 32 659 (80,7 %), 2 629 partielles, 3 660 à la main (v0.26.0). Les v0.19.0 à v0.26.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,15 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.26.0 (sixième demande du suivi des cartes, groupe terminé)
+- Les 71 cartes restantes du groupe « effet Play, cibles déclarées, cibles dans une autre zone » sont automatisées, une par une, dans un fichier de traductions écrites à la main (patch/custom2.py).
+- Moteur : la suite d'un effet attend la fin d'un « processus en cours » (608.2c) ; avant, elle s'exécutait tout de suite (Chandra, Torch of Defiance infligeait ses 2 blessures même si on lançait la carte, Djinn of Wishes exilait la carte avant qu'on puisse la jouer).
+- Modes répétables (700.2d) et modes à empreintes (700.2i) : les Confluences et les Saisons étaient comptées automatisées sans pouvoir répéter un mode.
+- Coûts imposés par une permission depuis n'importe quelle zone, y compris « payer des PV égaux à la valeur de mana » (Bolas's Citadel l'ignorait) et « mana de n'importe quel type ».
+- Conditions d'activation (seuil, délire, métallurgie, déchaînement…) : 41 cartes les ignoraient.
+- Coût de défausse d'une carte nommée (grandeur), jouer un terrain pendant une résolution, copies de cartes depuis un cimetière ou l'exil, échange de contrôle entre un sort et une créature, contrôle d'un sort, maîtrise de l'air d'un sort, changement de texte.
+- Mana « quand tu dépenses ce mana » (Forger's Foundry), Aura sur une carte d'un cimetière (Spellweaver Volute), lancer face cachée (Illusionary Mask), cartes hors de la partie (Spawnsire of Ulamog), force des cartes hors du champ de bataille (The Muckslinger Gang).
 
 ### Fait en v0.25.0 (cinquième demande du suivi des cartes)
 - Perte de la partie appliquée comme action basée sur un état (704.5a, b, c, 704.6c) au lieu d'un simple message, avec un déclencheur « quand un joueur perd la partie » : Curse of Vengeance automatisée (marqueurs lus en dernière information connue, 608.2h).
