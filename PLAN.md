@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 089 automatisées sur 32 659 (79,9 %), 2 789 partielles, 3 780 à la main (v0.18.0). 1 carte sans script Forge (Wicker Picker).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 120 automatisées sur 32 659 (80,0 %), 2 751 partielles, 3 787 à la main (v0.19.0). Environ 600 cartes comptées à tort comme automatisées avant v0.19.0 ont été corrigées ou repassées en partielles. 1 carte sans script Forge (Wicker Picker).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,17 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.19.0 (contrôle des cartes « automatisées »)
+- Contrôle statique (`tools/audit/audit.py`) et dynamique (`tools/audit/dyn.js` : chaque capacité de chaque carte automatisée est résolue sur un plateau type, à la recherche d'erreurs, d'actions inconnues, de journaux « undefined » et de résolutions sans effet), plus un contrôle de cohérence des cibles intégré au traducteur : une action qui vise une cible que l'unité ne déclare pas, ou qui traite un joueur ciblé comme un objet, rend la carte partielle.
+- 608.2h : chaque action d'une résolution relit l'état courant ; ce qui a quitté le champ de bataille garde sa dernière information connue (113.7a).
+- Corrigé (cartes comptées à tort) : « renvoie ~ dans la main » et assimilés sans cible (environ cent cartes) ; Pyroblast / Hydroblast et autres « si c'est un sort … » ; filtres dont le « sous-type » était en réalité une référence (Remembered, Targeted, Player…), dont les malédictions (aura sur joueur pas encore gérée, repassées en partielles) ; effets « tous les … que contrôle le joueur ciblé » qui touchaient tout le monde (Gulf Squid, Seismic Wave…) ; unités ciblées dont l'ensemble « tous les … » était ignoré (Orzhov Charm, Hubris…) ; X dans les filtres « force inférieure ou égale à X » ; Krosan Reclamation (mélange, cartes du joueur ciblé) ; Past in Flames et capacités accordées hors du champ de bataille (repassées en partielles) ; Graveyard Shovel ; Blim ; propriétaire et contrôleur confondus.
+- Source des blessures désignée (120.3) : « la créature ciblée inflige des blessures égales à sa force » (Rabid Bite, Giantfall…), contact mortel et lien de vie compris ; aucune blessure si la créature n'est plus là.
+- Contraintes de ciblage (115.3, 601.2c) appliquées au choix des cibles : cibles différentes, même contrôleur, contrôleurs différents (une par joueur), cartes du joueur ciblé, type de carte en commun, contrôleur lié au déclencheur.
+- Gain de contrôle : nouveau contrôleur désigné (joueur ciblé, joueur du déclencheur…), sans cible (Defined) ou sur tout un ensemble, durées « tant que ~ reste sur le champ de bataille / tant que tu le contrôles » (611.2b) ; échange de contrôle entre deux cibles (Legerdemain).
+- Filtres « même nom que la cible / l'objet retenu / l'objet du déclencheur » (Maelstrom Pulse, Izzet Staticaster, Bile Blight…), « la cible elle-même », « attaché à la cible », face cachée, « qui bloque cette créature », « que tu ne possèdes pas ».
+- Effets dont la source est la carte (Wall of Wonder…), Groupe (700.8), cartes piochées ce tour-ci, déclencheurs de blessures infligées à toi, recherche dans la zone d'un joueur ciblé choisie par toi ou par lui.
+- Pas encore vérifié en conditions réelles : les contraintes de ciblage ne s'appliquent qu'aux choix faits à la main (l'IA et le tirage automatique d'une cible unique ne les vérifient pas encore).
 
 ### Fait en v0.18.0
 - Fusion (702.102) : les deux moitiés d'une carte scindée lancées ensemble depuis la main, coût additionné, deux groupes de cibles (Wear // Tear, Far // Away…).
