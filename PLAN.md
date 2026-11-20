@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 191 automatisées sur 32 659 (80,2 %), 2 683 partielles, 3 784 à la main (v0.23.0). Les v0.19.0 à v0.23.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 266 automatisées sur 32 659 (80,4 %), 2 642 partielles, 3 750 à la main (v0.24.0). Les v0.19.0 à v0.24.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,18 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.24.0 (quatrième demande du suivi des cartes)
+- Malédictions : toutes automatisées sauf Curse of Vengeance (partielle : le moteur ne déclenche rien quand un joueur perd la partie). Joueur enchanté géré dans les interdictions de lancer et d'activer, les blessures, les déclencheurs et les filtres ; Accursed Witch revient transformée et attachée à un adversaire ; Curse of the Pierced Heart choisit le joueur ou un de ses planeswalkers.
+- Sorts sur la pile marqués : prévention (Hallow, avec gain de vie), redirection (Reverberation), « ne peut pas être contrecarré ». Hidden Retreat reste à la main (coût « mettre une carte de ta main sur ta bibliothèque »).
+- Coûts selon la façon de lancer : réductions limitées au marchandage, au rappel, au kicker, à la ruée, au flashback (Catalyst Stone, Johann).
+- Mots-clés accordés en main, en exil, en bibliothèque et au cimetière : flash, miracle, prévoyance, folie, dragage, récupération, jump-start.
+- Interdictions de lancer : limite par tour, vitesse de rituel, conditions de tour et de phase (Teferi, Time Raveler et Grand Abolisher étaient ignorés en silence).
+- Déplacements : « sous ton contrôle », « transformée », « attachée à un joueur » (environ 134 cartes les ignoraient en silence).
+- Conversion de mana (Mycosynth Lattice, Celestial Dawn).
+- Lancer pendant la résolution : la carte du dessus révélée (Powerbalance, Commander Spock), la carte elle-même depuis le cimetière (Sproutback Trudge, Syrix, Thunderblade Charge), la carte défaussée (Oskar), les cartes exilées avec la source (Smirking Spelljacker).
+- Corrigé : le dragage plantait à la pioche (faute de frappe introduite dans cette version, vue par la régression).
+- Reste : 44 variantes d'« effet Play », 15 cibles dans une autre zone, 18 cibles déclarées non traduites, harmonie accordée, propriété Damaged.
 
 ### Fait en v0.23.0 (troisième demande du suivi des cartes)
 - Malédictions : « le joueur enchanté ne peut pas gagner de vie » (Grievous Wound), « ne peut pas lancer plus d'un sort par tour » (Curse of Exhaustion, et toute limite de sorts par tour), « les créatures qui attaquent le joueur enchanté » (Curse of Hospitality), « révèle jusqu'à une créature et la met sous ton contrôle » (Curse of Unbinding). 33 malédictions sur 46.
