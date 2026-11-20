@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 266 automatisées sur 32 659 (80,4 %), 2 642 partielles, 3 750 à la main (v0.24.0). Les v0.19.0 à v0.24.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 295 automatisées sur 32 659 (80,5 %), 2 633 partielles, 3 730 à la main (v0.25.0). Les v0.19.0 à v0.25.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,16 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.25.0 (cinquième demande du suivi des cartes)
+- Perte de la partie appliquée comme action basée sur un état (704.5a, b, c, 704.6c) au lieu d'un simple message, avec un déclencheur « quand un joueur perd la partie » : Curse of Vengeance automatisée (marqueurs lus en dernière information connue, 608.2h).
+- Coût « mettre une carte de ta main sur ta bibliothèque » : Hidden Retreat, Penance, Tainted Specter, Leashling.
+- « Les créatures qui lui ont infligé des blessures ce tour-ci » : Brine Hag.
+- Nombre de kickers et valeurs selon le kicker : Chocobo Kick, Stronghold Arena, Rumbling Aftershocks.
+- Harmonisation accordée au cimetière : Songcrafter Mage.
+- Lancer pendant la résolution depuis plusieurs zones (Kaya the Inexorable), la carte exilée du dessus (Chandra, Torch of Defiance), une carte parmi celles révélées (Sunbird's Invocation).
+- Corrigé : la valeur de mana du sort déclencheur était perdue (Powerbalance, Sunbird's Invocation et les autres « valeur de mana du sort lancé ») ; la carte défaussée (Oskar) n'était pas retrouvée hors du banc de test.
+- Reste : 35 variantes d'« effet Play », 18 cibles déclarées, 15 cibles dans une autre zone, The Muckslinger Gang, Giant Albatross.
 
 ### Fait en v0.24.0 (quatrième demande du suivi des cartes)
 - Malédictions : toutes automatisées sauf Curse of Vengeance (partielle : le moteur ne déclenche rien quand un joueur perd la partie). Joueur enchanté géré dans les interdictions de lancer et d'activer, les blessures, les déclencheurs et les filtres ; Accursed Witch revient transformée et attachée à un adversaire ; Curse of the Pierced Heart choisit le joueur ou un de ses planeswalkers.
