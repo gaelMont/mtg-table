@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 079 automatisées sur 32 659 (79,9 %), 2 735 partielles, 3 844 à la main (v0.20.0). Les v0.19.0 et v0.20.0 ont retiré environ 900 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 144 automatisées sur 32 659 (80,1 %), 2 728 partielles, 3 786 à la main (v0.21.0). Les v0.19.0 et v0.20.0 ont retiré environ 900 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,14 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.21.0 (demande envoyée depuis le suivi des cartes)
+- Cibles hors du champ de bataille : « cible une carte de ton cimetière » (TargetOnly suivi d'un déplacement), effets durables qui ciblent une carte d'un cimetière ou de l'exil (Emry : « tu peux lancer cette carte ce tour-ci »).
+- Mots-clés accordés aux cartes du cimetière (613.1f) : flashback (Lier, Return the Past, Snapcaster Mage, Past in Flames…), évasion (Underworld Breach), retrace, exhumation (Mishra, Sedris). Mots-clés accordés aux cartes de la main : cyclage et cyclage de type (Jo Grant, Homing Sliver…).
+- Cibles déclarées : « le joueur ciblé perd la partie », « l'adversaire ciblé révèle le dessus de sa bibliothèque », « mets ses marqueurs sur la créature ciblée » (dernière information connue, 608.2h).
+- Effet Play : Galvanoth ; capacités de planeswalker et conditions acceptées sur « lance un sort depuis … ».
+- Filtres : historique, hors-la-loi, « attaché à cette carte », carte de permanent (exclut éphémères et rituels). Les propriétés inconnues ne sont plus prises pour des sous-types : environ 60 cartes repassent honnêtement en partielles (Bargain, Transformed, Damaged…).
+- Reste de la demande : cibles sur la pile (Lifelace, Parallectric Feedback…), sorts « lance une copie » aux variantes rares (41 cartes Play), statiques qui changent types et couleurs dans toutes les zones (Painter's Servant, Mycosynth Lattice…), miracle, prévoyance, ninjutsu accordés depuis la main.
 
 ### Fait en v0.20.0 (deuxième passe de contrôle)
 - Outils de contrôle (`tools/audit/`) : banc enrichi (couleurs, sous-types, marqueurs, auras attachées, bibliothèques réelles, deux façons de répondre aux questions) ; pilotage réel des 10 904 cartes à capacités déclenchées : l'événement est provoqué dans le moteur (mort, attaque, blessures, sort lancé, étape, gain de vie, cyclage, défausse, engagement…), avec un objet fabriqué pour satisfaire le filtre du déclencheur, puis la capacité est mise sur la pile et résolue comme en partie.
