@@ -156,7 +156,7 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 191 automatisées sur 32 659 (80,2 %), 2 694 partielles, 3 773 à la main (v0.22.0). Les v0.19.0 à v0.22.0 ont retiré environ 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 191 automatisées sur 32 659 (80,2 %), 2 683 partielles, 3 784 à la main (v0.23.0). Les v0.19.0 à v0.23.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
 - Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
@@ -195,6 +195,11 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.23.0 (troisième demande du suivi des cartes)
+- Malédictions : « le joueur enchanté ne peut pas gagner de vie » (Grievous Wound), « ne peut pas lancer plus d'un sort par tour » (Curse of Exhaustion, et toute limite de sorts par tour), « les créatures qui attaquent le joueur enchanté » (Curse of Hospitality), « révèle jusqu'à une créature et la met sous ton contrôle » (Curse of Unbinding). 33 malédictions sur 46.
+- Correction de défauts anciens, désormais appliqués ou signalés : le contrôle gagné lors d'une révélation (Telemin Performance, Thought Dissector…), le joueur qui reçoit un effet durable (EffectOwner, une trentaine de cartes), les restrictions des « lance gratuitement parmi ces cartes » (valeur de mana, lanceur, nombre de sorts), les « lance la carte du dessus » qui ne faisaient rien (7 cartes, maintenant signalées).
+- Pas fait : préventions de blessures d'un sort ciblé, cibles en exil ou sur plusieurs zones, choix de carte ou de nombre, 41 variantes de l'effet Play, Mycosynth Lattice, miracle, prévoyance, folie, flash accordés, encore, scavenge, dredge, mayhem, propriétés de sort (Bargain, Kicked…).
 
 ### Fait en v0.22.0 (deuxième demande du suivi des cartes)
 - Malédictions (Aura « Enchant player », 303.4) : l'Aura s'attache à un joueur et y reste, « le joueur enchanté » dans les déclencheurs, cibles, blessures, pioches et sorts lancés, « les adversaires qui l'attaquent ». 30 malédictions sur 46 sont automatisées.
