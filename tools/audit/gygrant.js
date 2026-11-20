@@ -25,4 +25,8 @@ module.exports=async c=>{const {add,zb,go,res,T,S,sleep,pk,log,perm,act,ans,tg,f
  T('Jo Grant Sol Ring : '+btns('Sol Ring')+' | ours main : '+btns('Grizzly Bears'));
  const nh=zone('p1','hand').length;zb('Sol Ring','zact');await sleep(40);T('cycle pick '+pk().slice(0,200));go();await sleep(40);res();await sleep(40);log(1);
  T('main : '+zone('p1','hand').join(',')+' | cimetière contient Sol Ring : '+zone('p1','graveyard').includes('Sol Ring'));
+ // 6. Tannuk : warp {2}{R} pour les artefacts et créatures rouges de ta main
+ await add('Tannuk, Steadfast Second','battlefield');await add('Shivan Dragon','hand');await sleep(20);
+ T('Tannuk dragon : '+btns('Shivan Dragon')+' | ours : '+btns('Grizzly Bears'));
+ zb('Shivan Dragon','zcast');await sleep(40);T('dragon pick : '+pk().slice(0,500));
 };
