@@ -1,6 +1,6 @@
 {
   "name": "mtg-table",
-  "version": "0.26.0",
+  "version": "0.27.0",
   "private": true,
   "description": "Table de jeu MTG à 2 à 4 joueurs avec moteur de règles",
   "scripts": {

@@ -156,8 +156,8 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Cartes de Forge pas encore sorties, classées « non sortie » et exclues du décompte : les 8 cartes Dune du Secret Lair « My Arrakis, My Superdrop » (sortie annoncée le 30/11/2026) et Borg Queen, One Who Is Many (prévue pour la Beginner Box Star Trek, annulée ; pas de n° 131 dans Star Trek Commander chez MTGJSON). Les 2 différences d'orthographe (Ratonhnhaké:ton, All Good Things...) sont réglées.
 
 ### Où on en est (v0.9.0)
-- Papier (cartes légales en tournoi selon MTGJSON) : 26 369 automatisées sur 32 659 (80,7 %), 2 629 partielles, 3 660 à la main (v0.26.0). Les v0.19.0 à v0.26.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
-- Fantaisie : 195 sur 407 (47,9 %). En ligne : 127 sur 677 (18,8 %).
+- Papier (cartes légales en tournoi selon MTGJSON) : 26 514 automatisées sur 32 659 (81,2 %), 2 559 partielles, 3 585 à la main (v0.27.0). Les v0.19.0 à v0.27.0 ont retiré plus de 1 000 cartes comptées à tort comme automatisées (corrigées ou repassées en partielles).
+- Fantaisie : 209 sur 464 (45,0 %). En ligne : 93 sur 665 (14,0 %).
 - Extensions récentes : Star Trek 77,8 %, Star Trek Commander 82,5 %, Reality Fracture 78,9 %, The Hobbit 76,2 %, Marvel Super Heroes 76,2 %.
 - Historique : 69,3 % au début de la passe, 72,1 % en v0.7.0, 72,6 % en v0.8.0, 73,7 % en v0.9.0.
 
@@ -195,6 +195,14 @@ Principe : une table de jeu complète où tu contrôles seul tous les joueurs. L
 - Manifester (701.40) : créature 2/2 face cachée, retournable pour son coût si c'est une carte de créature, ou pour son coût de mue ou de déguisement.
 - Jetons créés attachés à une cible ou à un objet retenu (Auras et Équipements jetons).
 - Corrigé : « toutes les créatures deviennent… » (AnimateAll) ignorait sans le dire les capacités, déclencheurs, couleurs, pertes de capacités et retraits de mots-clés. Tout est maintenant traduit ou signalé.
+
+### Fait en v0.27.0 (septième demande du suivi des cartes : 124 cartes, groupe terminé)
+
+- Choix de carte hors du champ de bataille (44 cartes) : nouvelle action générale « choisir dans une zone » (cimetière, main, exil, bibliothèque, zone de commandement ; joueur qui choisit, propriétaire, au hasard, « jusqu'à N », une carte de chaque sorte, cartes ciblées, exilées avec la source, mémorisées ou imprimées), conditions sur la carte choisie, « toutes les autres cartes » (Monomania, Noxious Vapors, Worldpurge), devinettes posées au moment de l'effet (Master of Predicaments, The Seventh Doctor), Forgotten Lore et Shrouded Lore, Sylvan Library, Manifold Insights, Stronghold Gambit, Kefka, Jetsam, Stinging Study, Eumidian Wastewaker, Chief Montgomery Scott, Dawnbreak Reclaimer, Bound // Determined.
+- Statiques (41 cartes) : blocage de plusieurs créatures (CanBlockAny / CanBlockAmount), champion, remplacements accordés (Pulmonic Sliver au choix, Scion of Halaster, Master Chef, Bewitching Leechcraft), Blood Sun, Zilortha (blessures mortelles selon la force), Fealty to the Realm (le monarque contrôle), gain des capacités activées d'un autre objet (Quicksilver Elemental, Kasmina, Scheming Fence, Locus of Enlightenment), Volrath's Shapeshifter.
+- Coûts particuliers (39 cartes) : surpuissance, vantardise, ninjutsu, retourner face visible, prévoir à tout moment, coûts additionnels imposés (Drought, Terror of the Peaks, Brutal Suppression, Tithe Taker, Carth), Damping Sphere, Thran Portal, contempler, réunir des preuves, « autant que tu veux » avec réduction (Marches, Explosive Singularity), Close Encounter, Soul Immolation, réduction appliquée aussi à X.
+- Salles (Room) : portes verrouillées et déverrouillées, déverrouillage en action spéciale, déclencheurs « quand tu déverrouilles cette porte » et « salle entièrement déverrouillée », caractéristiques combinées des portes ouvertes.
+- Bugs cachés corrigés (cartes comptées automatisées à tort) : terrains « arrive engagé sauf si » (113 cartes) ; painlands et Ancient Tomb sans blessures ; capacités de mana avec coût ou effet en plus ignorés (maintenant gérés ou signalés) ; coûts hybrides lus comme génériques (663 cartes) ; vantardise et surpuissance sans restrictions ; cibles « valeur de mana X ou moins » sans X ; choix « en arrivant » jamais posés pour un terrain joué ; copies sans les capacités activées de l'original ; cartes scindées sans caractéristiques combinées hors de la pile ; mise en jeu « sous ton contrôle » ignorée pour les déplacements groupés.
 
 ### Fait en v0.26.0 (sixième demande du suivi des cartes, groupe terminé)
 - Les 71 cartes restantes du groupe « effet Play, cibles déclarées, cibles dans une autre zone » sont automatisées, une par une, dans un fichier de traductions écrites à la main (patch/custom2.py).
